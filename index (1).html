@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joe Design — يوسف</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080808;--sur:#111;--acc:#ff3c00;--gld:#C9A84C;--txt:#f0ede8;--mut:#555;--brd:#1e1e1e}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Cairo',sans-serif;overflow-x:hidden;cursor:none}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.35;pointer-events:none;z-index:999}
+.cur{width:10px;height:10px;background:var(--acc);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:transform .1s}
+.cur2{width:34px;height:34px;border:1px solid rgba(255,60,0,.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:all .2s}
+@media(pointer:coarse){.cur,.cur2{display:none}body{cursor:auto}}
+nav{position:fixed;top:0;inset-inline:0;z-index:500;padding:1.3rem 3.5rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--brd);background:rgba(8,8,8,.92);backdrop-filter:blur(14px)}
+.nav-logo{font-family:'Space Mono',monospace;font-size:.95rem;color:var(--acc);letter-spacing:.18em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--mut);text-decoration:none;font-size:.8rem;font-weight:600;letter-spacing:.06em;transition:color .3s;position:relative;cursor:pointer}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;right:0;width:0;height:1px;background:var(--acc);transition:width .3s}
+.nav-links a:hover{color:var(--txt)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:.5rem 1.5rem;background:var(--acc);color:#fff;text-decoration:none;font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px));transition:background .3s;cursor:pointer}
+.nav-cta:hover{background:#ff5522}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.burger span{display:block;width:24px;height:2px;background:var(--txt);transition:all .3s}
+.mob-menu{display:none;position:fixed;inset:0;background:var(--bg);z-index:490;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+.mob-menu.open{display:flex}
+.mob-menu a{font-size:2rem;font-weight:900;color:var(--mut);text-decoration:none;transition:color .25s;cursor:pointer}
+.mob-menu a:hover{color:var(--acc)}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 3.5rem 4rem;position:relative;overflow:hidden;gap:3rem}
+.hero-bg{position:absolute;bottom:-3rem;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:clamp(5rem,14vw,15rem);font-weight:700;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.03);white-space:nowrap;pointer-events:none;letter-spacing:-.05em;animation:drift 22s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translateX(-52%)}to{transform:translateX(-48%)}}
+.avail{display:inline-flex;align-items:center;gap:.6rem;background:rgba(0,200,80,.08);border:1px solid rgba(0,200,80,.25);padding:.38rem 1rem;margin-bottom:1.6rem}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:#00c850;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,200,80,.4)}50%{box-shadow:0 0 0 8px rgba(0,200,80,0)}}
+.avail span{font-family:'Space Mono',monospace;font-size:.63rem;color:#00c850;letter-spacing:.18em;text-transform:uppercase}
+.hero-ey{display:flex;align-items:center;gap:.8rem;margin-bottom:1.3rem}
+.hero-ey::before{content:'';width:2.5rem;height:1px;background:var(--acc);flex-shrink:0}
+.hero-ey span{font-family:'Space Mono',monospace;font-size:.66rem;color:var(--acc);letter-spacing:.26em;text-transform:uppercase}
+.hero-name{font-size:clamp(3.5rem,6.5vw,6.5rem);font-weight:900;line-height:.98;letter-spacing:-.03em;margin-bottom:1.6rem}
+.hero-name .acc{color:var(--acc)}
+.hero-name .out{color:transparent;-webkit-text-stroke:2px rgba(240,237,232,.5)}
+.hero-desc{font-size:.93rem;color:var(--mut);line-height:1.85;max-width:450px;margin-bottom:2.5rem;font-weight:300}
+.hero-cta{display:flex;gap:1rem}
+.btn-p{padding:.88rem 2rem;background:var(--acc);color:#fff;text-decoration:none;font-weight:700;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 11px) 0,100% 11px,100% 100%,11px 100%,0 calc(100% - 11px));transition:all .3s;cursor:pointer;border:none;font-family:'Cairo',sans-serif;display:inline-block}
+.btn-p:hover{background:#ff5522;transform:translateY(-2px)}
+.btn-g{padding:.88rem 2rem;border:1px solid var(--brd);color:var(--mut);text-decoration:none;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;transition:all .3s;cursor:pointer;display:inline-block}
+.btn-g:hover{border-color:var(--txt);color:var(--txt)}
+.hero-stats{display:flex;gap:2.5rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--brd)}
+.stat-i{text-align:center}
+.stat-n{display:block;font-size:2rem;color:var(--acc);font-weight:900;line-height:1;font-family:'Space Mono',monospace}
+.stat-l{font-size:.6rem;color:var(--mut);letter-spacing:.14em;text-transform:uppercase;margin-top:.3rem;display:block}
+.hero-right{position:relative;z-index:2;display:flex;justify-content:center;align-items:center}
+.h-card{width:320px;height:430px;background:var(--sur);border:1px solid var(--brd);position:relative;overflow:hidden}
+.h-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,var(--acc),transparent 60deg,var(--gld) 180deg,transparent 240deg,var(--acc) 360deg);animation:spin 9s linear infinite;opacity:.07}
+@keyframes spin{to{transform:rotate(360deg)}}
+.h-card-in{position:absolute;inset:1px;background:var(--sur);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:1.5rem}
+.h-avatar{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--gld));display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:900;color:#fff;font-family:'Space Mono',monospace;position:relative}
+.h-avatar::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px dashed rgba(255,60,0,.3);animation:spin 11s linear infinite reverse}
+.h-card-name{font-size:1.05rem;font-weight:900;letter-spacing:.06em;text-align:center}
+.h-card-sub{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--mut);letter-spacing:.2em;text-align:center}
+.h-bars{width:100%;display:flex;flex-direction:column;gap:7px}
+.h-bar-row{display:flex;flex-direction:column;gap:3px}
+.h-bar-lbl{font-family:'Space Mono',monospace;font-size:.56rem;color:var(--mut);letter-spacing:.1em}
+.h-bar-track{height:2px;background:var(--brd);border-radius:1px;overflow:hidden}
+.h-bar-fill{height:100%;border-radius:1px;background:linear-gradient(90deg,var(--gld),var(--acc))}
+.h-badge{position:absolute;bottom:1.2rem;left:1.2rem;background:var(--acc);color:#fff;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.32rem .8rem;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))}
+.mq{overflow:hidden;border-top:1px solid var(--brd);border-bottom:1px solid var(--brd);background:var(--acc);padding:.72rem 0}
+.mq-track{display:flex;gap:3rem;animation:mq 20s linear infinite;white-space:nowrap}
+.mq-item{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;color:#fff;letter-spacing:.22em;text-transform:uppercase;flex-shrink:0}
+.mq-dot{color:rgba(255,255,255,.35)}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+section{padding:6rem 3.5rem}
+.sec-label{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem;font-family:'Space Mono',monospace;font-size:.6rem;color:var(--acc);letter-spacing:.3em;text-transform:uppercase}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--brd);max-width:80px}
+.sec-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-bottom:.8rem}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.work-sec{background:var(--bg)}
+.w-tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.w-tab{padding:.42rem 1.2rem;border:1px solid var(--brd);background:transparent;color:var(--mut);font-family:'Space Mono',monospace;font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .25s;font-weight:700}
+.w-tab.active,.w-tab:hover{border-color:var(--acc);color:var(--acc)}
+.w-tab.active{background:rgba(255,60,0,.06)}
+.w-panel{display:none}
+.w-panel.active{display:block}
+.w-grid-featured{display:grid;grid-template-columns:repeat(12,1fr);gap:1rem}
+.w-grid-normal{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.w-grid-small{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.w-item{position:relative;overflow:hidden;background:var(--sur);border:1px solid var(--brd);cursor:pointer}
+.w-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.w-item:hover img{transform:scale(1.07)}
+.w-thumb{width:100%;padding-bottom:75%;position:relative;overflow:hidden}
+.w-thumb-inner{position:absolute;inset:0}
+.f1{grid-column:span 8;grid-row:span 2}.f1 .w-thumb{padding-bottom:60%}
+.f2{grid-column:span 4}.f3{grid-column:span 4}.f4{grid-column:span 5}.f5{grid-column:span 7}
+.w-overlay{position:absolute;inset:0;background:rgba(8,8,8,.88);display:flex;flex-direction:column;justify-content:flex-end;padding:1.3rem;opacity:0;transition:opacity .3s}
+.w-item:hover .w-overlay{opacity:1}
+.w-tag{font-family:'Space Mono',monospace;font-size:.56rem;color:var(--acc);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.3rem}
+.w-name{font-size:.9rem;font-weight:700}
+.w-arrow{width:28px;height:28px;border:1px solid var(--acc);display:flex;align-items:center;justify-content:center;color:var(--acc);font-size:.9rem;margin-top:.6rem;transition:background .25s}
+.w-arrow:hover{background:var(--acc);color:#fff}
+.coming-box{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:260px;border:1px solid var(--brd);gap:1.2rem;padding:3rem;text-align:center}
+.coming-label{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--acc);letter-spacing:.3em;text-transform:uppercase}
+.coming-title{font-size:1.5rem;font-weight:900;letter-spacing:-.02em}
+.coming-sub{font-size:.82rem;color:var(--mut);font-weight:300;line-height:1.7;max-width:360px}
+.vid-sec{background:var(--sur)}
+.vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
+.vid-card{background:var(--bg);border:1px solid var(--brd);overflow:hidden}
+.vid-card video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+.vid-card .vid-lbl{padding:.7rem 1rem;font-family:'Space Mono',monospace;font-size:.6rem;color:var(--mut);letter-spacing:.1em;border-top:1px solid var(--brd)}
+.logo-sec{background:var(--bg)}
+.logo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem;margin-top:2.5rem}
+.logo-card{background:var(--sur);border:1px solid var(--brd);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.2rem;gap:.8rem;transition:border-color .3s;cursor:pointer}
+.logo-card:hover{border-color:var(--acc)}
+.logo-card img{width:80px;height:80px;object-fit:contain;filter:grayscale(1);opacity:.65;transition:all .3s}
+.logo-card:hover img{filter:grayscale(0);opacity:1}
+.logo-name{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--mut);letter-spacing:.14em;text-align:center;text-transform:uppercase}
+.services{background:var(--sur)}
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--brd);border:1px solid var(--brd);margin-top:3rem}
+.srv-card{background:var(--sur);padding:2.3rem;position:relative;overflow:hidden;transition:background .3s}
+.srv-card::before{content:'';position:absolute;top:0;right:0;width:3px;height:0;background:var(--acc);transition:height .4s}
+.srv-card:hover::before{height:100%}
+.srv-card:hover{background:#161616}
+.srv-num-big{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--acc);letter-spacing:.15em;border:1px solid var(--brd);padding:.28rem .65rem;margin-bottom:1.3rem;width:fit-content}
+.srv-num{position:absolute;bottom:1.3rem;left:1.3rem;font-family:'Space Mono',monospace;font-size:.56rem;color:var(--brd);letter-spacing:.2em;transition:color .3s}
+.srv-card:hover .srv-num{color:var(--mut)}
+.srv-card h3{font-size:1rem;font-weight:700;margin-bottom:.6rem}
+.srv-card p{font-size:.8rem;color:var(--mut);line-height:1.75;font-weight:300}
+.process{background:var(--bg)}
+.proc-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--brd);border:1px solid var(--brd);margin-top:2.5rem}
+.proc-step{background:var(--bg);padding:2rem;transition:background .3s}
+.proc-step:hover{background:#0c0c0c}
+.proc-num{font-family:'Space Mono',monospace;font-size:3rem;font-weight:700;color:var(--brd);line-height:1;margin-bottom:.8rem;transition:color .3s}
+.proc-step:hover .proc-num{color:rgba(255,60,0,.15)}
+.proc-step h3{font-size:.92rem;font-weight:700;margin-bottom:.5rem}
+.proc-step p{font-size:.76rem;color:var(--mut);line-height:1.7;font-weight:300}
+.test-sec{background:var(--sur)}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
+.test-card{background:var(--bg);border:1px solid var(--brd);padding:2rem;transition:border-color .3s}
+.test-card:hover{border-color:var(--acc)}
+.test-stars{color:var(--gld);font-size:.72rem;letter-spacing:.1em;margin-bottom:.7rem}
+.test-q{font-size:2.2rem;color:var(--acc);line-height:1;opacity:.4;margin-bottom:.5rem;font-family:'Space Mono',monospace}
+.test-txt{font-size:.8rem;color:#888;line-height:1.85;font-weight:300;margin-bottom:1.3rem}
+.test-auth{display:flex;align-items:center;gap:.7rem}
+.test-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#fff;flex-shrink:0;font-weight:700}
+.test-name{font-size:.8rem;font-weight:700}
+.test-role{font-size:.6rem;color:var(--mut);letter-spacing:.1em;font-family:'Space Mono',monospace}
+.contact{background:var(--bg)}
+.con-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem;align-items:start}
+.con-info h3{font-size:1.5rem;font-weight:900;letter-spacing:-.02em;margin-bottom:1rem}
+.con-info p{font-size:.83rem;color:var(--mut);line-height:1.85;font-weight:300;margin-bottom:2rem}
+.clink{display:flex;align-items:center;gap:1rem;padding:.85rem 1.2rem;background:var(--sur);border:1px solid var(--brd);text-decoration:none;color:var(--mut);font-size:.8rem;margin-bottom:.55rem;transition:all .3s}
+.clink:hover{border-color:var(--acc);color:var(--txt)}
+.clink-ico{width:26px;height:26px;background:var(--acc);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;color:#fff;font-weight:700}
+.soc-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.4rem}
+.soc-btn{width:36px;height:36px;border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--mut);font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;transition:all .3s;cursor:pointer}
+.soc-btn:hover{border-color:var(--acc);color:var(--acc)}
+.cform{display:flex;flex-direction:column;gap:.85rem}
+.fg{display:flex;flex-direction:column;gap:.32rem}
+.fg label{font-family:'Space Mono',monospace;font-size:.56rem;color:var(--acc);letter-spacing:.25em;text-transform:uppercase}
+.fg input,.fg textarea,.fg select{background:var(--sur);border:1px solid var(--brd);color:var(--txt);padding:.78rem 1rem;font-family:'Cairo',sans-serif;font-size:.82rem;outline:none;transition:border-color .3s;width:100%}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--acc)}
+.fg textarea{min-height:85px;resize:vertical}
+.fg select option{background:var(--sur)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.brow{display:grid;grid-template-columns:1fr 2fr;gap:.85rem}
+.cur-sel{background:var(--sur);border:1px solid var(--brd);color:var(--txt);padding:.78rem .8rem;font-family:'Cairo',sans-serif;font-size:.82rem;outline:none;transition:border-color .3s;cursor:pointer}
+.cur-sel:focus{border-color:var(--acc)}
+.con-method{display:flex;gap:.45rem;flex-wrap:wrap}
+.cm-btn{padding:.45rem 1.1rem;border:1px solid var(--brd);background:transparent;color:var(--mut);font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.12em;cursor:pointer;transition:all .25s;text-transform:uppercase}
+.cm-btn.sel{border-color:var(--acc);color:var(--acc);background:rgba(255,60,0,.07)}
+.sub-btn{padding:1rem;background:var(--acc);color:#fff;border:none;font-family:'Cairo',sans-serif;font-size:.88rem;font-weight:700;letter-spacing:.12em;cursor:pointer;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:background .3s,transform .2s}
+.sub-btn:hover{background:#ff5522;transform:translateY(-2px)}
+footer{border-top:1px solid var(--brd);padding:2rem 3.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.f-logo{font-family:'Space Mono',monospace;font-size:.92rem;color:var(--acc);letter-spacing:.18em;text-transform:uppercase}
+.f-copy{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--mut);letter-spacing:.06em}
+.f-soc{display:flex;gap:.5rem}
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:2000;align-items:center;justify-content:center;padding:2rem}
+.lb.open{display:flex}
+.lb-img{max-width:90vw;max-height:88vh;object-fit:contain}
+.lb-close{position:absolute;top:1.5rem;right:1.5rem;color:#fff;font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.15em;cursor:pointer;opacity:.5;transition:opacity .2s;background:none;border:none}
+.lb-close:hover{opacity:1}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(255,255,255,.15);color:#fff;font-size:1.3rem;padding:.5rem 1rem;cursor:pointer;transition:all .25s}
+.lb-nav:hover{border-color:var(--acc);color:var(--acc)}
+.lb-prev{left:1.5rem}.lb-next{right:1.5rem}
+@media(max-width:1024px){section{padding:5rem 2rem}nav{padding:1.2rem 2rem}.hero{padding:7rem 2rem 4rem;gap:2rem}}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}.burger{display:flex}
+  .hero{grid-template-columns:1fr;padding:6rem 1.5rem 3rem}.hero-right{display:none}
+  section{padding:4rem 1.5rem}
+  .srv-grid,.proc-steps,.test-grid,.con-grid{grid-template-columns:1fr}
+  .vid-grid,.w-grid-normal{grid-template-columns:1fr 1fr}
+  .w-grid-featured{grid-template-columns:1fr}
+  .f1,.f2,.f3,.f4,.f5{grid-column:span 1;grid-row:span 1}
+  .f1 .w-thumb{padding-bottom:75%}
+  nav{padding:1rem 1.5rem}
+  footer{padding:1.5rem;flex-direction:column;text-align:center}
+  .frow,.brow{grid-template-columns:1fr}
+  .hero-stats{gap:1.5rem}
+}
+@media(max-width:480px){.vid-grid{grid-template-columns:1fr}.logo-grid{grid-template-columns:repeat(2,1fr)}.w-grid-small{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur2" id="cur2"></div>
+
+<div class="lb" id="lb">
+  <button class="lb-close" onclick="closeLb()">CLOSE X</button>
+  <button class="lb-nav lb-prev" onclick="lbNav(-1)">&#8592;</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <button class="lb-nav lb-next" onclick="lbNav(1)">&#8594;</button>
+</div>
+
+<div class="mob-menu" id="mobMenu">
+  <a onclick="go('work');closeMob()">الأعمال</a>
+  <a onclick="go('videos');closeMob()">كواليس أعمالي</a>
+  <a onclick="go('logos');closeMob()">عملائي</a>
+  <a onclick="go('services');closeMob()">الخدمات</a>
+  <a onclick="go('contact');closeMob()">تواصل</a>
+</div>
+
+<nav>
+  <span class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">JOE DESIGN</span>
+  <ul class="nav-links">
+    <li><a onclick="go('work')">الأعمال</a></li>
+    <li><a onclick="go('videos')">كواليس أعمالي</a></li>
+    <li><a onclick="go('logos')">عملائي</a></li>
+    <li><a onclick="go('services')">الخدمات</a></li>
+    <li><a onclick="go('contact')">تواصل</a></li>
+  </ul>
+  <div style="display:flex;gap:.7rem;align-items:center">
+    <span class="nav-cta" onclick="go('contact')">اشتغل معايا</span>
+    <div class="burger" id="burger" onclick="document.getElementById('mobMenu').classList.toggle('open')"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div style="position:relative;z-index:2">
+    <div class="avail"><div class="avail-dot"></div><span>متاح للمشاريع الجديدة</span></div>
+    <div class="hero-ey"><span>Graphic Designer · Cairo, Egypt</span></div>
+    <h1 class="hero-name">JOE<br><span class="acc">DESIGN</span><br><span class="out">STUDIO</span></h1>
+    <p class="hero-desc">هدفي إني أخلي منتجاتك تظهر بأحسن شكل يشد ناس. بحوّل أفكارك لهويات بصرية قوية تقنع العملاء. بدمج التصميم اليدوي مع الذكاء الاصطناعي عشان أقدم شغل يتميز.</p>
+    <div class="hero-cta">
+      <span class="btn-p" onclick="go('work')">شوف أعمالي</span>
+      <span class="btn-g" onclick="go('contact')">اشتغل معايا</span>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-i"><span class="stat-n">+150</span><span class="stat-l">مشروع</span></div>
+      <div class="stat-i"><span class="stat-n">+80</span><span class="stat-l">عميل</span></div>
+      <div class="stat-i"><span class="stat-n">5+</span><span class="stat-l">سنوات</span></div>
+      <div class="stat-i"><span class="stat-n">+40</span><span class="stat-l">علامة تجارية</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="h-card">
+      <div class="h-card-in">
+        <div class="h-avatar">JD</div>
+        <div class="h-card-name">يوسف — Joe Design</div>
+        <div class="h-card-sub">GRAPHIC DESIGNER · CAIRO</div>
+        <div class="h-bars">
+          <div class="h-bar-row"><div class="h-bar-lbl">Brand Identity</div><div class="h-bar-track"><div class="h-bar-fill" style="width:95%"></div></div></div>
+          <div class="h-bar-row"><div class="h-bar-lbl">Social Media</div><div class="h-bar-track"><div class="h-bar-fill" style="width:90%"></div></div></div>
+          <div class="h-bar-row"><div class="h-bar-lbl">AI Design</div><div class="h-bar-track"><div class="h-bar-fill" style="width:88%"></div></div></div>
+          <div class="h-bar-row"><div class="h-bar-lbl">Motion & Video</div><div class="h-bar-track"><div class="h-bar-fill" style="width:80%"></div></div></div>
+        </div>
+      </div>
+      <div class="h-badge">متاح للعمل · Open for Work</div>
+    </div>
+  </div>
+  <div class="hero-bg">CREATIVE</div>
+</section>
+
+<div class="mq">
+  <div class="mq-track">
+    <span class="mq-item">Brand Identity</span><span class="mq-dot">◆</span>
+    <span class="mq-item">Restaurant Design</span><span class="mq-dot">◆</span>
+    <span class="mq-item">Social Media</span><span class="mq-dot">◆</span>
+    <span class="mq-item">Motion Graphics</span><span class="mq-dot">◆</span>
+    <span class="mq-item">AI Design</span><span class="mq-dot">◆</span>
+    <span class="mq-item">Confectionery</span><span class="mq-dot">◆</span>
+    <span class="mq-item">Perfume Branding</span><span class="mq-dot">◆</span>
+    <span class="mq-item">Menu Design</span><span class="mq-dot">◆</span>
+    <span class="mq-item">Brand Identity</span><span class="mq-dot">◆</span>
+    <span class="mq-item">Restaurant Design</span><span class="mq-dot">◆</span>
+    <span class="mq-item">Social Media</span><span class="mq-dot">◆</span>
+    <span class="mq-item">Motion Graphics</span><span class="mq-dot">◆</span>
+    <span class="mq-item">AI Design</span><span class="mq-dot">◆</span>
+    <span class="mq-item">Confectionery</span><span class="mq-dot">◆</span>
+    <span class="mq-item">Perfume Branding</span><span class="mq-dot">◆</span>
+    <span class="mq-item">Menu Design</span><span class="mq-dot">◆</span>
+  </div>
+</div>
+
+<!-- WORK -->
+<section class="work-sec reveal" id="work">
+  <div class="sec-label">الأعمال</div>
+  <h2 class="sec-title">أعمال مختارة</h2>
+  <div class="w-tabs" id="wTabs"></div>
+  <div id="wPanels"></div>
+</section>
+
+<!-- VIDEOS / BEHIND THE SCENES -->
+<section class="vid-sec reveal" id="videos">
+  <div class="sec-label">كواليس</div>
+  <h2 class="sec-title">كواليس أعمالي</h2>
+  <div class="vid-grid" id="vidGrid"></div>
+</section>
+
+<!-- LOGOS / CLIENTS -->
+<section class="logo-sec reveal" id="logos">
+  <div class="sec-label">عملائي</div>
+  <h2 class="sec-title">شركات اشتغلت معاهم</h2>
+  <div class="logo-grid" id="logoGrid"></div>
+</section>
+
+<!-- SERVICES -->
+<section class="services reveal" id="services">
+  <div class="sec-label">الخدمات</div>
+  <h2 class="sec-title">ماذا أقدر أعمل لك؟</h2>
+  <div class="srv-grid">
+    <div class="srv-card"><div class="srv-num-big">01</div><h3>الهوية البصرية</h3><p>تصميم هوية متكاملة تعكس شخصية علامتك وتميزها في السوق من لوجو وألوان وخطوط.</p><span class="srv-num">01</span></div>
+    <div class="srv-card"><div class="srv-num-big">02</div><h3>تصميم المطاعم</h3><p>تصاميم تشهّي وتشد الجمهور — منيوهات، بوستات، وهوية متكاملة تخلي مطعمك يبرز.</p><span class="srv-num">02</span></div>
+    <div class="srv-card"><div class="srv-num-big">03</div><h3>سوشيال ميديا</h3><p>تصاميم جذابة تزيد التفاعل وتبني حضور قوي ومتناسق على جميع المنصات.</p><span class="srv-num">03</span></div>
+    <div class="srv-card"><div class="srv-num-big">04</div><h3>موشن وفيديو</h3><p>فيديوهات مع موسيقى تقنع العميل وتزيد المبيعات وتفرق منتجاتك.</p><span class="srv-num">04</span></div>
+    <div class="srv-card"><div class="srv-num-big">05</div><h3>تصميم بـ AI</h3><p>دمج فريد بين اليد والذكاء الاصطناعي لنتائج مبهرة وسريعة تفوق التوقعات.</p><span class="srv-num">05</span></div>
+    <div class="srv-card"><div class="srv-num-big">06</div><h3>المطبوعات</h3><p>بروشورات، فلايرات، منيوهات، وبطاقات عمل جاهزة للطباعة بأعلى جودة.</p><span class="srv-num">06</span></div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process reveal">
+  <div class="sec-label">طريقة الشغل</div>
+  <h2 class="sec-title">كيف بشتغل معاك؟</h2>
+  <div class="proc-steps">
+    <div class="proc-step"><div class="proc-num">01</div><h3>الاستيعاب</h3><p>بسمعك وبفهم رؤيتك واحتياجاتك وجمهورك قبل ما أرسم أي خط.</p></div>
+    <div class="proc-step"><div class="proc-num">02</div><h3>البحث</h3><p>بدرس السوق والمنافسين عشان شغلك يتميز فعلاً مش بس يكون حلو.</p></div>
+    <div class="proc-step"><div class="proc-num">03</div><h3>التصميم</h3><p>بقدملك مفاهيم متعددة وبتطور المختار معاك لحد ما يطلع زي ما عايزه.</p></div>
+    <div class="proc-step"><div class="proc-num">04</div><h3>التسليم</h3><p>بسلمك الملفات بكل الصيغ جاهزة للاستخدام الفوري بدون تأخير.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="test-sec reveal">
+  <div class="sec-label">آراء العملاء</div>
+  <h2 class="sec-title">بيقولوا إيه عني؟</h2>
+  <div class="test-grid">
+    <div class="test-card"><div class="test-stars">★★★★★</div><div class="test-q">"</div><p class="test-txt">اللوجو والتصاميم فاقت توقعاتي. حس إنه فهم جوهر علامتنا من أول حوار. محترف جداً وملتزم.</p><div class="test-auth"><div class="test-av" style="background:linear-gradient(135deg,#ff3c00,#C9A84C)">أ</div><div><div class="test-name">أحمد المصري</div><div class="test-role">CEO / TechStart</div></div></div></div>
+    <div class="test-card"><div class="test-stars">★★★★★</div><div class="test-q">"</div><p class="test-txt">شغل احترافي وتسليم في الوقت. هويتنا اتغيرت ١٨٠ درجة وعملاؤنا لاحظوا الفرق على طول.</p><div class="test-auth"><div class="test-av" style="background:linear-gradient(135deg,#00ccaa,#0066ff)">س</div><div><div class="test-name">سارة الخالد</div><div class="test-role">Marketing Manager</div></div></div></div>
+    <div class="test-card"><div class="test-stars">★★★★★</div><div class="test-q">"</div><p class="test-txt">من أفضل المصممين اللي اشتغلت معاهم. بيفهم من غير توضيح كتير والنتيجة دايماً تبهر.</p><div class="test-auth"><div class="test-av" style="background:linear-gradient(135deg,#8800ff,#ff0066)">م</div><div><div class="test-name">محمد القحطاني</div><div class="test-role">Owner / Basha Restaurant</div></div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact reveal" id="contact">
+  <div class="sec-label">تواصل</div>
+  <h2 class="sec-title">يلا نبدأ مشروعك</h2>
+  <div class="con-grid">
+    <div class="con-info">
+      <h3>جاهز لخدمتك</h3>
+      <p>هدفي إني أخلي منتجاتك تظهر بأحسن شكل يشد ناس. عندك مشروع؟ تواصل معايا دلوقتي.</p>
+      <a class="clink" href="https://wa.me/201124527286" target="_blank"><div class="clink-ico">WA</div><span>واتساب: 01124527286</span></a>
+      <a class="clink" href="https://www.instagram.com/kaboos645/" target="_blank"><div class="clink-ico">IG</div><span>Instagram: @kaboos645</span></a>
+      <a class="clink" href="mailto:yfhhdrbkwuig@gmail.com"><div class="clink-ico">@</div><span>yfhhdrbkwuig@gmail.com</span></a>
+      <div class="soc-row">
+        <a class="soc-btn" href="https://wa.me/201124527286" target="_blank">WA</a>
+        <a class="soc-btn" href="https://www.instagram.com/kaboos645/" target="_blank">IG</a>
+        <a class="soc-btn" href="mailto:yfhhdrbkwuig@gmail.com">@</a>
+        <!-- ضع روابطك هنا — احذف علامة // عشان يتفعّل الرابط -->
+        <!-- <a class="soc-btn" href="رابط-التيك-توك" target="_blank">TT</a> -->
+        <!-- <a class="soc-btn" href="رابط-الفيس-بوك" target="_blank">FB</a> -->
+        <!-- <a class="soc-btn" href="رابط-البيهانس" target="_blank">BE</a> -->
+      </div>
+    </div>
+    <div class="cform">
+      <div class="fg"><label>اسمك</label><input type="text" id="c-name" placeholder="محمد أحمد"></div>
+      <div class="fg">
+        <label>نوع الخدمة</label>
+        <select id="c-service">
+          <option value="">اختار نوع الخدمة</option>
+          <option>هوية بصرية كاملة</option>
+          <option>تصميم مطعم — منيو وبوستات</option>
+          <option>تصميم حلواني</option>
+          <option>تصميم عطور</option>
+          <option>تصميم ملابس</option>
+          <option>بوستات سوشيال ميديا</option>
+          <option>موشن وفيديو</option>
+          <option>أخرى</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>الميزانية التقريبية</label>
+        <div class="brow">
+          <select class="cur-sel" id="c-cur"><option>جنيه</option><option>ريال</option><option>دولار</option></select>
+          <input type="number" id="c-budget" placeholder="مثال: 4000" min="0">
+        </div>
+      </div>
+      <div class="fg">
+        <label>طريقة التواصل المفضلة</label>
+        <div class="con-method">
+          <button class="cm-btn sel" onclick="pickMethod(this)">واتساب</button>
+          <button class="cm-btn" onclick="pickMethod(this)">انستاجرام</button>
+          <button class="cm-btn" onclick="pickMethod(this)">إيميل</button>
+          <button class="cm-btn" onclick="pickMethod(this)">تيليجرام</button>
+        </div>
+      </div>
+      <div class="fg"><label>وصف مشروعك</label><textarea id="c-desc" placeholder="احكيلي عن مشروعك وايه اللي محتاجه بالضبط..."></textarea></div>
+      <button class="sub-btn" onclick="sendWA()">ابعت على واتساب</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">JOE DESIGN</div>
+  <p class="f-copy">© 2025 Joe Design · يوسف · جميع الحقوق محفوظة</p>
+  <div class="f-soc">
+    <a class="soc-btn" href="https://wa.me/201124527286" target="_blank">WA</a>
+    <a class="soc-btn" href="https://www.instagram.com/kaboos645/" target="_blank">IG</a>
+    <a class="soc-btn" href="mailto:yfhhdrbkwuig@gmail.com">@</a>
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════
+   إعدادات — غيّر هنا بس
+══════════════════════════════════════ */
+const WA = '201124527286';
+
+/*
+  ══════════════════════════════════════
+  هيكل المجلدات — حطهم جنب index.html
+  ══════════════════════════════════════
+
+  work/
+    حلواني/          ← اسم المجلد = اسم التاب
+      manifest.json  ← ["1.jpg","2.png","3.jpg"]
+      1.jpg
+      2.png
+    مطاعم/
+      manifest.json
+      ...
+    عطور/
+      manifest.json
+      ...
+
+  video/
+    manifest.json    ← ["reel.mp4","intro.mp4"]
+    reel.mp4
+
+  logo/
+    manifest.json    ← [{"name":"الشركة","folder":"company","logo":"logo.png"}]
+    company/
+      logo.png
+
+  ══════════════════════════════════════
+  الأقسام بتيجي أوتوماتيك من المجلدات
+  لو مجلد فيه صور يظهر
+  لو فاضي أو مش موجود بيظهر "قريباً"
+  ══════════════════════════════════════
+*/
+
+// أسماء مجلداتك داخل work/ + الاسم اللي يظهر في الموقع
+// غيّر folder لاسم مجلدك الفعلي — label هو الاسم اللي بيتعرض
+const SECTIONS = [
+  {folder:'confectionery', label:'تصميم الحلواني'},
+  {folder:'restaurants',   label:'تصميم المطاعم'},
+  {folder:'perfumes',      label:'تصميم العطور'},
+  {folder:'clothing',      label:'تصميم الملابس'},
+  {folder:'menus',         label:'تصميم المنيوهات'},
+  // لو عندك قسم تاني ضيف سطر زي ده:
+  // {folder:'اسم-المجلد', label:'الاسم اللي يظهر'},
+];
+
+/* ══════════════════════════════════════ SCROLL */
+function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'})}
+function closeMob(){document.getElementById('mobMenu').classList.remove('open')}
+
+/* ══════════════════════════════════════ CURSOR */
+const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-5}px,${my-5}px)`});
+(function a(){rx+=(mx-rx-17)*.12;ry+=(my-ry-17)*.12;cur2.style.transform=`translate(${rx}px,${ry}px)`;requestAnimationFrame(a)})();
+document.querySelectorAll('a,button,.w-item,.logo-card,.srv-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur2.style.width='52px';cur2.style.height='52px'});
+  el.addEventListener('mouseleave',()=>{cur2.style.width='34px';cur2.style.height='34px'});
+});
+
+/* ══════════════════════════════════════ REVEAL */
+const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+/* ══════════════════════════════════════ LIGHTBOX */
+let lbArr=[],lbI=0;
+function openLb(arr,i){lbArr=arr;lbI=i;document.getElementById('lb-img').src=arr[i];document.getElementById('lb').classList.add('open')}
+function closeLb(){document.getElementById('lb').classList.remove('open')}
+function lbNav(d){lbI=(lbI+d+lbArr.length)%lbArr.length;document.getElementById('lb-img').src=lbArr[lbI]}
+document.getElementById('lb').addEventListener('click',e=>{if(e.target===e.currentTarget)closeLb()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')lbNav(-1);if(e.key==='ArrowLeft')lbNav(1)});
+
+/* ══════════════════════════════════════ WORK */
+function comingSoon(label){
+  return `<div class="coming-box">
+    <div class="coming-label">قريباً</div>
+    <div class="coming-title">${label}</div>
+    <div class="coming-sub">هتشوف أعمالي في هذا القسم قريباً — ابقى تابعني</div>
+  </div>`;
+}
+
+function buildWork(){
+  const allP = SECTIONS.map(s=>
+    fetch(`work/${s.folder}/manifest.json`)
+      .then(r=>r.ok?r.json():Promise.reject())
+      .then(files=>files.length?{...s,files:files.slice(0,9)}:Promise.reject())
+      .catch(()=>({...s,files:[]}))
+  );
+
+  Promise.all(allP).then(results=>{
+    const tabsEl=document.getElementById('wTabs');
+    const panelsEl=document.getElementById('wPanels');
+    tabsEl.innerHTML='';
+    panelsEl.innerHTML='';
+
+    results.forEach((s,i)=>{
+      // TAB
+      const tab=document.createElement('button');
+      tab.className='w-tab'+(i===0?' active':'');
+      tab.textContent=s.label;
+      tab.onclick=()=>{
+        document.querySelectorAll('.w-tab').forEach((t,j)=>t.classList.toggle('active',j===i));
+        document.querySelectorAll('.w-panel').forEach((p,j)=>p.classList.toggle('active',j===i));
+      };
+      tabsEl.appendChild(tab);
+
+      // PANEL
+      const panel=document.createElement('div');
+      panel.className='w-panel'+(i===0?' active':'');
+
+      if(!s.files.length){
+        panel.innerHTML=comingSoon(s.label);
+      } else {
+        const imgs=s.files.map(f=>`work/${s.folder}/${f}`);
+        const n=imgs.length;
+        let cls=n>=5?'w-grid-featured':n>=3?'w-grid-normal':'w-grid-small';
+        const fCls=['f1','f2','f3','f4','f5'];
+        panel.innerHTML=`<div class="${cls}">${imgs.map((src,j)=>`
+          <div class="w-item${n>=5&&j<5?' '+fCls[j]:''}" onclick='openLb(${JSON.stringify(imgs)},${j})'>
+            <div class="w-thumb"><div class="w-thumb-inner">
+              <img src="${src}" alt="${s.label}" loading="lazy" onerror="this.closest('.w-item').style.display='none'">
+            </div></div>
+            <div class="w-overlay">
+              <div class="w-tag">${s.label}</div>
+              <div class="w-name">${s.label}</div>
+              <div class="w-arrow">&#8599;</div>
+            </div>
+          </div>`).join('')}</div>`;
+      }
+      panelsEl.appendChild(panel);
+    });
+  });
+}
+
+/* ══════════════════════════════════════ VIDEOS */
+function buildVideos(){
+  const grid=document.getElementById('vidGrid');
+  fetch('video/manifest.json')
+    .then(r=>r.ok?r.json():Promise.reject())
+    .then(files=>{
+      if(!files||!files.length)throw 0;
+      grid.innerHTML=files.map((f,i)=>`
+        <div class="vid-card">
+          <video controls preload="metadata">
+            <source src="video/${f}" type="video/${f.split('.').pop()}">
+          </video>
+          <div class="vid-lbl">VIDEO ${String(i+1).padStart(2,'0')}</div>
+        </div>`).join('');
+    })
+    .catch(()=>{
+      grid.innerHTML=`<div class="coming-box" style="grid-column:1/-1">
+        <div class="coming-label">قريباً</div>
+        <div class="coming-title">كواليس أعمالي</div>
+        <div class="coming-sub">فيديوهات من خلف الكواليس وأعمال الموشن — ابقى تابعني</div>
+      </div>`;
+    });
+}
+
+/* ══════════════════════════════════════ LOGOS */
+function buildLogos(){
+  const grid=document.getElementById('logoGrid');
+  fetch('logo/manifest.json')
+    .then(r=>r.ok?r.json():Promise.reject())
+    .then(clients=>{
+      if(!clients||!clients.length)throw 0;
+      grid.innerHTML=clients.map(c=>`
+        <div class="logo-card" onclick="openLb(['logo/${c.folder}/${c.logo}'],0)">
+          <img src="logo/${c.folder}/${c.logo}" alt="${c.name}" onerror="this.style.display='none'">
+          <div class="logo-name">${c.name}</div>
+        </div>`).join('');
+    })
+    .catch(()=>{
+      grid.innerHTML=`<div class="coming-box" style="grid-column:1/-1">
+        <div class="coming-label">قريباً</div>
+        <div class="coming-title">شركات اشتغلت معاهم</div>
+        <div class="coming-sub">قائمة عملائي وشركاتي — ابقى تابعني</div>
+      </div>`;
+    });
+}
+
+/* ══════════════════════════════════════ CONTACT */
+let cMethod='واتساب';
+function pickMethod(btn){
+  document.querySelectorAll('.cm-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  cMethod=btn.textContent.trim();
+}
+function sendWA(){
+  const name=document.getElementById('c-name').value.trim();
+  const srv=document.getElementById('c-service').value;
+  const cur=document.getElementById('c-cur').value;
+  const budget=document.getElementById('c-budget').value.trim();
+  const desc=document.getElementById('c-desc').value.trim();
+  if(!name){alert('من فضلك اكتب اسمك');return}
+  if(!srv){alert('من فضلك اختار نوع الخدمة');return}
+  const msg=[
+    '━━━━━━━━━━━━━━━━━━',
+    '   *طلب جديد — Joe Design*',
+    '━━━━━━━━━━━━━━━━━━',
+    `*الاسم:* ${name}`,
+    `*الخدمة:* ${srv}`,
+    budget?`*الميزانية:* ${budget} ${cur}`:'*الميزانية:* لم تُحدد',
+    `*التواصل المفضل:* ${cMethod}`,
+    desc?`\n*تفاصيل:*\n${desc}`:'',
+    '\n━━━━━━━━━━━━━━━━━━',
+    '_تم الإرسال من الموقع الرسمي_'
+  ].filter(Boolean).join('\n');
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+/* ══════════════════════════════════════ INIT */
+buildWork();
+buildVideos();
+buildLogos();
+</script>
+</body>
+</html>
