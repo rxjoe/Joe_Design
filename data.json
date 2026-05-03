@@ -49,6 +49,11 @@
       "id": "menus",
       "label": "تصميم المنيوهات",
       "images": []
+    },
+    {
+      "id": "Sales",
+      "label": "مبيعات",
+      "images": []
     }
   ],
   "videos": {
