@@ -35,7 +35,10 @@
     {
       "id": "perfumes",
       "label": "تصميم العطور",
-      "images": []
+      "images": [
+        "https://i.ibb.co/N6r8sXQm/Whats-App-Image-2026-04-30-at-12-56-59-PM-1.jpg",
+        "https://i.ibb.co/nNRFr7CZ/Whats-App-Image-2026-04-30-at-12-56-59-PM.jpg"
+      ]
     },
     {
       "id": "clothing",
