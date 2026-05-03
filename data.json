@@ -53,7 +53,10 @@
     {
       "id": "Sales",
       "label": "مبيعات",
-      "images": []
+      "images": [
+        "https://i.ibb.co/gM0t0pBt/2.png",
+        "https://i.ibb.co/4ZcHtPZZ/1.png"
+      ]
     }
   ],
   "videos": {
