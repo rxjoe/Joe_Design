@@ -21,7 +21,11 @@
     {
       "id": "restaurants",
       "label": "تصميم المطاعم",
-      "images": []
+      "images": [
+        "https://i.ibb.co/XZXPJY6R/2.png",
+        "https://i.ibb.co/fVGhmsCn/7.png",
+        "https://i.ibb.co/wTnKs4s/9.png"
+      ]
     },
     {
       "id": "confectionery",
