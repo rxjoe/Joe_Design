@@ -1,8 +1,8 @@
 {
   "settings": {
     "name": "Joe Design",
-    "real_name": "ÙÙØ³Ù",
-    "bio_ar": "ÙØ¯ÙÙ Ø¥ÙÙ Ø£Ø®ÙÙ ÙÙØªØ¬Ø§ØªÙ ØªØ¸ÙØ± Ø¨Ø£Ø­Ø³Ù Ø´ÙÙ ÙØ´Ø¯ ÙØ§Ø³.",
+    "real_name": "يوسف",
+    "bio_ar": "هدفي إني أخلي منتجاتك تظهر بأحسن شكل يشد ناس.",
     "phone": "01124527286",
     "whatsapp": "201124527286",
     "email": "yfhhdrbkwuig@gmail.com",
@@ -20,7 +20,7 @@
   "work_sections": [
     {
       "id": "restaurants",
-      "label": "ØªØµÙÙÙ Ø§ÙÙØ·Ø§Ø¹Ù",
+      "label": "تصميم المطاعم",
       "images": [
         "https://i.ibb.co/XZXPJY6R/2.png",
         "https://i.ibb.co/fVGhmsCn/7.png",
@@ -29,12 +29,12 @@
     },
     {
       "id": "confectionery",
-      "label": "ØªØµÙÙÙ Ø§ÙØ­ÙÙØ§ÙÙ",
+      "label": "تصميم الحلواني",
       "images": []
     },
     {
       "id": "perfumes",
-      "label": "ØªØµÙÙÙ Ø§ÙØ¹Ø·ÙØ±",
+      "label": "تصميم العطور",
       "images": [
         "https://i.ibb.co/N6r8sXQm/Whats-App-Image-2026-04-30-at-12-56-59-PM-1.jpg",
         "https://i.ibb.co/nNRFr7CZ/Whats-App-Image-2026-04-30-at-12-56-59-PM.jpg"
@@ -42,17 +42,17 @@
     },
     {
       "id": "clothing",
-      "label": "ØªØµÙÙÙ Ø§ÙÙÙØ§Ø¨Ø³",
+      "label": "تصميم الملابس",
       "images": []
     },
     {
       "id": "menus",
-      "label": "ØªØµÙÙÙ Ø§ÙÙÙÙÙÙØ§Øª",
+      "label": "تصميم المنيوهات",
       "images": []
     },
     {
       "id": "Design-of-food-factories",
-      "label": "ØªØµÙÙÙ ÙØµØ§ÙØ¹ ØºØ°Ø§Ø¦ÙØ©",
+      "label": "تصميم مصانع غذائية",
       "images": [
         "https://i.ibb.co/gM0t0pBt/2.png",
         "https://i.ibb.co/4ZcHtPZZ/1.png",
@@ -67,46 +67,46 @@
     "sections": [
       {
         "id": "behind",
-        "label": "ÙÙØ§ÙÙØ³ Ø£Ø¹ÙØ§ÙÙ",
+        "label": "كواليس أعمالي",
         "items": [
           {
-            "title": "ØªØµÙÙÙ ÙØ§Ø±ÙÙÙ",
+            "title": "تصميم كاروكي",
             "url": "https://www.dropbox.com/scl/fi/e1mabdry0f2vmh5c9xl68/WhatsApp-Video-2026-05-04-at-3.01.15-AM.mp4?rlkey=tf24d81opl4o4o8qdxytvcdiy&st=weo20oqm&raw=1"
           },
           {
-            "title": "ØªØµÙÙÙ Ø¨ÙØ³Øª ÙÙ Ø¹Ø·Ø±",
+            "title": "تصميم بوست لي عطر",
             "url": "https://dl.dropboxusercontent.com/scl/fi/8uapgrlpsc84oodf5xved/WhatsApp-Video-2026-05-04-at-3.02.15-AM.mp4?rlkey=ecw4eg4zlav9tmk4afrp2ed2o&st=3z8nlcad"
           },
           {
-            "title": "ØªØµÙÙÙ ÙÙ ÙØ³ÙØ³Ù mr.robot",
+            "title": "تصميم لي مسلسل mr.robot",
             "url": "https://dl.dropboxusercontent.com/scl/fi/yn5gnk11tbq9edbq2acr0/WhatsApp-Video-2026-05-04-at-3.00.47-AM.mp4?rlkey=yb54kv4g5m7lgjgsgqiercau6&st=dhby0o3g"
           }
         ]
       },
       {
         "id": "ai",
-        "label": "ÙÙØ¯ÙÙÙØ§Øª AI",
+        "label": "فيديوهات AI",
         "items": []
       },
       {
         "id": "motion",
-        "label": "ÙÙØ´Ù Ø¬Ø±Ø§ÙÙÙ",
+        "label": "موشن جرافيك",
         "items": []
       },
       {
         "id": "editing",
-        "label": "ÙÙØ¯ÙÙ Ø¥Ø¯ÙØªÙÙØ¬",
+        "label": "فيديو إديتينج",
         "items": []
       }
     ]
   },
   "clients": [
     {
-      "name": "Ø­ÙÙØ§ÙÙ Ø®ÙØ±",
+      "name": "حلواني خير",
       "logo": "https://i.ibb.co/nsjM008M/479737131-122205210080233573-7254976098471849338-n.jpg"
     },
     {
-      "name": "Ø±Ø§ÙØ´Ù ÙØ±Ø§ÙØ´Ù",
+      "name": "رانشى كرانشى",
       "logo": "https://i.ibb.co/Z6NKQVz1/626358423-1308106918018702-641751760337162903-n.jpg"
     },
     {
@@ -114,23 +114,23 @@
       "logo": "https://i.ibb.co/kWYPKRh/Whats-App-Image-2026-05-04-at-1-44-08-AM.jpg"
     },
     {
-      "name": "Ø¬Ø¯Ù Ø²ÙÙÙ",
+      "name": "جدو زيكو",
       "logo": "https://i.ibb.co/jnDhRGh/655012225-122168121794944116-885046823064312860-n.jpg"
     }
   ],
   "testimonials": [
     {
       "name": "Doctor Burger",
-      "role": "ÙØ·Ø¹Ù",
-      "text": "ÙØ§Ø´Ø§Ø¡ Ø§ÙÙÙ ØªØ³ÙÙ Ø§ÙØ¯Ù",
+      "role": "مطعم",
+      "text": "ماشاء الله تسلم ايدك",
       "img": "https://i.ibb.co/kWYPKRh/Whats-App-Image-2026-05-04-at-1-44-08-AM.jpg",
       "audio": "https://www.dropbox.com/scl/fi/fjhphbag3v8iucx1mbiuy/.mp3.mpeg?rlkey=vcwu2wmlxl9otzwuww9lnuubj&st=hxkqincc&raw=1",
       "stars": 5
     },
     {
-      "name": "Ø±Ø§ÙØ´Ù ÙØ±Ø§ÙØ´Ù",
-      "role": "ÙØ·Ø¹Ù",
-      "text": "ØªØ³ÙÙ Ø§ÙØ¯Ù ØªØ­ÙÙ",
+      "name": "رانشى كرانشى",
+      "role": "مطعم",
+      "text": "تسلم ايدك تحفه",
       "img": "https://i.ibb.co/Z6NKQVz1/626358423-1308106918018702-641751760337162903-n.jpg",
       "audio": "https://www.dropbox.com/scl/fi/2zow2hhyj4bbqk4nr03o9/.mp3.mpeg?rlkey=5in6tzj3n06ks0gtwmtslvil1&st=ze9qcqlw&raw=1",
       "stars": 5
