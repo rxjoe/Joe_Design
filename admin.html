@@ -345,7 +345,11 @@ async function loadData() {
     });
     if (r.ok) {
       const f = await r.json();
-      DATA = JSON.parse(atob(f.content.replace(/\n/g,'')));
+      // ✅ Decode UTF-8 correctly — fixes Arabic garbling on reload
+      const raw = atob(f.content.replace(/\n/g,''));
+      const bytes2 = new Uint8Array(raw.length);
+      for (let i=0;i<raw.length;i++) bytes2[i]=raw.charCodeAt(i);
+      DATA = JSON.parse(new TextDecoder('utf-8').decode(bytes2));
     } else {
       // first time — create default
       DATA = defaultData();
@@ -698,7 +702,9 @@ function deleteTestimonial(i) {
 async function publishAll() {
   saveAll(); // save settings first
   const json = JSON.stringify(DATA, null, 2);
-  const b64  = btoa(unescape(encodeURIComponent(json)));
+  // ✅ TextEncoder — يحفظ العربي صح بدون أي تشويه
+  const bytes = new TextEncoder().encode(json);
+  const b64   = btoa(String.fromCharCode(...bytes));
 
   toast('جاري النشر...', 'loading');
 
